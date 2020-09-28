@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class Patient {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private String name;
-	private Date CreatedAt;
+	private Date CreatedAt= new Date();
 	private String disease;
 	
 	@OneToMany(cascade = CascadeType.ALL)
@@ -33,7 +34,7 @@ public class Patient {
 	List<Report> report = new ArrayList<>();
 	public Patient() {
 	}
-	public Patient(String username, String name, Date createdAt, String disease) {
+	public Patient(String name,String disease) {
 		super();
 		this.name = name;
 		this.disease = disease;
@@ -53,8 +54,8 @@ public class Patient {
 	public Date getCreatedAt() {
 		return CreatedAt;
 	}
-	public void setCreatedAt(Date createdAt) {
-		CreatedAt = new Date();
+	public void setCreatedAt(Date CreatedAt) {
+		this.CreatedAt = CreatedAt;
 	}
 	public String getDisease() {
 		return disease;
@@ -62,5 +63,12 @@ public class Patient {
 	public void setDisease(String disease) {
 		this.disease = disease;
 	}
+	public List<Report> getReport() {
+		return report;
+	}
+	public void setReport(List<Report> report) {
+		this.report = report;
+	}
+	
 
 }

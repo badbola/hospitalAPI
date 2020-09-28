@@ -7,6 +7,8 @@ import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -19,9 +21,11 @@ public class Report {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	private String disease;
-	private Date CreatedAt;
+	private Date CreatedAt= new Date();
 	private String status;
-	
+	public Report() {
+		
+	}
 	public Report(String disease, String status) {
 		super();
 		this.disease = disease;
@@ -42,8 +46,8 @@ public class Report {
 	public Date getCreatedAt() {
 		return CreatedAt;
 	}
-	public void setCreatedAt(Date createdAt) {
-		CreatedAt = new Date();
+	public void setCreatedAt(Date CreatedAt) {
+		this.CreatedAt = CreatedAt;
 	}
 	public String getStatus() {
 		return status;

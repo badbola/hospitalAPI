@@ -1,5 +1,8 @@
 package com.enkash.api.HospitalAPI.services;
 
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +35,22 @@ public class MyUserDetailsService implements UserDetailsService,DocService{
 			return null;
 		}
 	}
-	
+	@Override
+	public List<Object> showAll() {
+		List<Object>list = new ArrayList<>();
+		
+		docRepo.findAll().forEach(e->{
+			String ID = String.valueOf(e.getId());
+			String Name = e.getName();
+			String Email = e.getEmail();
+			list.add("id "+ID);
+			list.add("name "+Name);
+			list.add("Email "+Email);
+			
+		});
+		
+		// TODO Auto-generated method stub
+		return list;
+	}
 
 }
