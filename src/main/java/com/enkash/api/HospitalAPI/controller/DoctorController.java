@@ -18,13 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.enkash.api.HospitalAPI.model.AuthenticationRequest;
 import com.enkash.api.HospitalAPI.model.AuthenticationResponse;
 import com.enkash.api.HospitalAPI.model.Doctor;
+import com.enkash.api.HospitalAPI.model.Patient;
 import com.enkash.api.HospitalAPI.security.JwtUtil;
 import com.enkash.api.HospitalAPI.services.MyUserDetailsService;
+import com.enkash.api.HospitalAPI.services.PatientService;
 
 @RestController
 public class DoctorController {
 	@Autowired
 	private MyUserDetailsService docService;
+	
+	@Autowired
+	private PatientService patient;
 	
 	@Autowired
 	private AuthenticationManager authManager;
@@ -46,6 +51,10 @@ public class DoctorController {
 	@PostMapping("/doctors")
 	public Doctor addDoc(@RequestBody Doctor doc) {
 		return this.docService.addDoc(doc);
+	}
+	@PostMapping("/patients")
+	public Patient addPat(@RequestBody Patient pat) {
+		return this.patient.addPat(pat);
 	}
 	
 	
